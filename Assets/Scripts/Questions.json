@@ -1,0 +1,51 @@
+{
+    "questions":
+    [
+        {
+            "id": 0,
+            "phase" : 0,
+            "title": "The baby smiles at you. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Smile back",
+                    "scores": [0,0,0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Stare at the baby, look for further cues",
+                    "scores": [0,0,0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Smile, then pick her up, then throw her into the air screaming “fly to the moon little birdy!”",
+                    "scores": [0,0,0]
+                }
+            ]
+        },
+
+        {
+            "id": 1,
+            "phase" : 0,
+            "title": "Now the baby makes high pitched sounds, looking in different directions, waving her small hands. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Start talking back in a high pitched voice, then take some pics and send them to your father",
+                    "scores": [0,0,0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Pick her up, rub her back, let her suck on your left nipple",
+                    "scores": [0,0,0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Let her alone for some minutes”",
+                    "scores": [0,0,0]
+                }
+            ]
+        }
+    ]
+
+}
