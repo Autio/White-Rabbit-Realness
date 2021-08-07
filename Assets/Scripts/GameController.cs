@@ -9,6 +9,8 @@ public class GameController : Singleton<GameController>
 {
     enum GameStates {starting, playing}
     GameStates gameState;
+    public Transform[] TitleTexts;
+    int titleTextTriggers = 0;
 
     // 0, 1, 2
     int activePhase = 0;
@@ -43,7 +45,24 @@ public class GameController : Singleton<GameController>
     // Update is called once per frame
     void Update()
     {
-        
+        if(gameState == GameStates.starting)
+        {
+            if(Time.time > 0.1f && titleTextTriggers == 0)
+            {
+                TitleTexts[0].GetComponent<Shot>().Go();
+                titleTextTriggers = 1;
+            }
+            if(Time.time > 0.7f && titleTextTriggers == 1)
+            {
+                TitleTexts[1].GetComponent<Shot>().Go();
+                titleTextTriggers = 2;
+            }
+            if(Time.time > 2 && titleTextTriggers == 2)
+            {
+                TitleTexts[2].GetComponent<Shot>().Go();
+                titleTextTriggers = 3;
+            }
+        }
     }
 
     // In the game mode there are three phases of questions 
