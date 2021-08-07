@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using TMPro;
 
 public class GameController : Singleton<GameController>
 {
@@ -85,7 +86,7 @@ public class GameController : Singleton<GameController>
             GameObject newAnswerOption = Instantiate(answerOption, answerOptionAnchors[i].transform.position, Quaternion.identity) as GameObject;
             activeOptions.Add(newAnswerOption);
             // Set text 
-            newAnswerOption.GetComponent<Text>().text = MapLetter(i) + " " + question.answers[i];
+            newAnswerOption.GetComponent<TMP_Text>().text = MapLetter(i) + " " + question.answers[i];
         }
     }
 
@@ -116,9 +117,9 @@ public class GameController : Singleton<GameController>
     void ClearQuestion()
     {
         // Any existing question text and options need to be cleared out 
-        foreach (GameObject a in ActiveOptions)
+        foreach (GameObject a in activeOptions)
         {
-            ActiveOptions.Remove(a);
+            activeOptions.Remove(a);
             Destroy(a, 0.1f);
         }
     }
