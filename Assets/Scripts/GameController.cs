@@ -40,12 +40,16 @@ public class GameController : Singleton<GameController>
 
     List<GameObject> activeOptions;
 
+    private int selectedCharacter;
+    public GameObject[] characterOptions;
+
     // Start is called before the first frame update
     void Start()
     {
         gameState = GameStates.starting;
         questionsAsked = new List<int>();
         activeOptions = new List<GameObject>();
+        selectedCharacter = 0;
     }
 
     // Update is called once per frame
@@ -94,6 +98,49 @@ public class GameController : Singleton<GameController>
                 titleTextTriggers = 3;
             }
         }
+    }
+
+    // Cycle to the next available character or loop around
+    public void NextCharacter()
+    {
+        float transitionDuration = .6f;
+        Transform characterTransform = characterOptions[selectedCharacter].transform;
+        // Move old character away
+        
+        characterTransform.DOMove(new Vector3(characterTransform.position.x + 20, 
+                            characterTransform.position.y, 
+                            characterTransform.position.z), transitionDuration);
+
+        // Pick the new character
+        selectedCharacter++;
+        if(selectedCharacter > characterOptions.Length - 1)
+        {
+            selectedCharacter = 0;
+        }
+
+        // Swap out the old character and swap in the new one
+        characterTransform = characterOptions[selectedCharacter].transform;
+
+        // Make sure they start from the right place
+        characterTransform.position = new Vector3(-20, 
+                                                characterTransform.position.y,
+                                                characterTransform.position.z);
+        
+        // Then tween them in
+        characterTransform.DOMove(new Vector3(0, 
+                            characterTransform.position.y, 
+                            characterTransform.position.z), transitionDuration);
+
+    }
+
+    public void PreviousCharacter()
+    {
+        selectedCharacter--;
+        if(selectedCharacter < 0)
+        {
+            selectedCharacter = characterOptions.Length - 1;
+        }
+
     }
 
     private IEnumerator ShowCanvas(float delay = 2.0f)
