@@ -7,7 +7,7 @@ public class JSONReader : MonoBehaviour
 {
     private string Path = @"Assets/Data/";
 
-    Questions questions;
+    public Questions questions;
 
     void Start()
     {

@@ -8,6 +8,10 @@ using UnityEngine;
 public class Questions
 {
     public Question[] questions;
+    public Questions(Question[] myQuestions)
+    {
+         questions = myQuestions;
+    }
 }
 
 [System.Serializable]

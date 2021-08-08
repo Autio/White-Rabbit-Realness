@@ -20,6 +20,6 @@ public class CameraController : Singleton<CameraController>
 
     public void MoveToNextAnchor(Transform anchor)
     {
-        transform.DOMove(anchor.position, 2.0f);
+        transform.DOMove(new Vector3(transform.position.x, anchor.position.y, transform.position.z), 2.0f);
     }
 }

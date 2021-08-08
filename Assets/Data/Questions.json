@@ -9,17 +9,17 @@
                 {
                     "id": 0,
                     "answer": "Smile back",
-                    "scores": [0,0,0]
+                    "scores": [0,2,-1]
                 },
                 {
                     "id": 1,
                     "answer": "Stare at the baby, look for further cues",
-                    "scores": [0,0,0]
+                    "scores": [-1,-1,0]
                 },
                 {
                     "id": 2,
                     "answer": "Smile, then pick her up, then throw her into the air screaming “fly to the moon little birdy!”",
-                    "scores": [0,0,0]
+                    "scores": [0,0,3]
                 }
             ]
         },
@@ -32,17 +32,105 @@
                 {
                     "id": 0,
                     "answer": "Start talking back in a high pitched voice, then take some pics and send them to your father",
-                    "scores": [0,0,0]
+                    "scores": [1,1,-1]
                 },
                 {
                     "id": 1,
                     "answer": "Pick her up, rub her back, let her suck on your left nipple",
-                    "scores": [0,0,0]
+                    "scores": [2,-1, 0]
                 },
                 {
                     "id": 2,
-                    "answer": "Let her alone for some minutes”",
-                    "scores": [0,0,0]
+                    "answer": "Let her alone for some minutes",
+                    "scores": [-2,-2, 2]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "phase" : 0,
+            "title": "The baby is actually sleeping, and has been for some hours. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Take a nap yourself",
+                    "scores": [-2,-1,-1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Play with yourself, then take a nap, then hold her hand and whisper that she will always be alright",
+                    "scores": [1,1,2]
+                },
+                {
+                    "id": 2,
+                    "answer": "Edit some photos of her, then drink some coke, then go for a walk, then call a friend that works with autistic children",
+                    "scores": [0, -1 ,-2]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "phase" : 0,
+            "title": "You are tired, the baby is playing with a blanket. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Call for a nanny",
+                    "scores": [-2,0,0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Stare at the wall, think about engines and stuff",
+                    "scores": [-2,-2, 1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Lay down next to her, say some mumbo jumbo, listen to her response, laugh whenever appropriate",
+                    "scores": [2,1,-2]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "phase" : 0,
+            "title": "The baby’s diaper stinks, she has slept for approx. ten minutes. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Let her sleep, watch some Desperate Housewives",
+                    "scores": [-2,0,2]
+                },
+                {
+                    "id": 1,
+                    "answer": "Bring her to your chest, walk to your tiny bathroom, get her a new diaper, be at peace with yourself",
+                    "scores": [2, 0, -1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Call your love interest, sit on their face, make sure you know how the baby is doing, wake her up after 50 minutes and ask her how she feels, smile if necessary",
+                    "scores": [1, 2, 2]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "phase" : 0,
+            "title": "The baby is screaming, and you are making a new video game about killing people. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Finish the game, then go look after the baby (it should only take 15 minutes)",
+                    "scores": [-1,-1, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Finish the game, then go look for your integrity, then look for the baby, give her an ice cream",
+                    "scores": [-1, 1, -1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Pick her up and talk to her, sing Bohemian Rapsody or Rude Boy if needed",
+                    "scores": [1, 2, 0]
                 }
             ]
         }
