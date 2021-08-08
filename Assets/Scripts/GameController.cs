@@ -13,6 +13,7 @@ public class GameController : Singleton<GameController>
     public GameObject playCanvas;
     public Transform[] cameraAnchors;
     public Transform[] TitleTexts;
+    public Transform[] scoreTexts;
     int titleTextTriggers = 0;
 
     // 0, 1, 2
@@ -114,6 +115,7 @@ public class GameController : Singleton<GameController>
 
     void NextQuestion(int activePhase, List<int> questionsAsked)
     {
+        ClearQuestion();
         Question question = null;
         // The game has been passed
         if(questionsAsked.Count > questionLimit)
@@ -139,7 +141,7 @@ public class GameController : Singleton<GameController>
 
         if (t == 0)
         {
-       //     return;
+            return;
         }
 
         // Display question text
@@ -150,12 +152,25 @@ public class GameController : Singleton<GameController>
             GameObject newAnswerOption = Instantiate(answerOption, new Vector3(), Quaternion.identity) as GameObject;
             activeOptions.Add(newAnswerOption);
             newAnswerOption.transform.SetParent(answerPanel.transform.Find("PanelInterim").transform, false);
-
+            newAnswerOption.GetComponent<AnswerScores>().scores = question.answers[i].scores;
             // Set text 
             newAnswerOption.transform.Find("Text").GetComponent<TMP_Text>().text = MapLetter(i) + ") " + question.answers[i].answer;
 
             // Force refresh
         }
+    }
+
+    public void AnswerChosen(int[] scores)
+    {
+        gameBars[0] += scores[0];
+        gameBars[1] += scores[1];
+        gameBars[2] += scores[2];
+
+        scoreTexts[0].GetComponent<TMP_Text>().text = gameBars[0].ToString();
+        scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
+        scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
+
+        NextQuestion(activePhase, questionsAsked);
     }
 
     string MapLetter(int l)

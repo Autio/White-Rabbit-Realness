@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 810, y: 0}
-  m_SizeDelta: {x: 340, y: 0}
+  m_SizeDelta: {x: 420, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7178323945353997629
 CanvasRenderer:
@@ -126,7 +126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2368355360961189656}
         m_TargetAssemblyTypeName: AnswerScores, Assembly-CSharp
-        m_MethodName: Answered
+        m_MethodName: AnswerChosen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
