@@ -114,6 +114,7 @@ public class GameController : Singleton<GameController>
                 3.2f
                 );
             StartCoroutine("ShowCanvas", 2.0f);
+            StartCoroutine("MaterializeBaby", 3.0f);
         }
     }
     
@@ -192,6 +193,19 @@ public class GameController : Singleton<GameController>
         playCanvas.SetActive(true);
         NextQuestion(activePhase, questionsAsked);
     }
+
+    private IEnumerator MaterializeBaby(float delay = 3.0f)
+    {
+        characterOptions[selectedCharacter].transform.Find("FaceAnchor").Find("babyface1").gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
+        characterOptions[selectedCharacter].layer = 3;
+        Rigidbody rb = characterOptions[selectedCharacter].AddComponent<Rigidbody>();
+        rb.useGravity = false;
+        characterOptions[selectedCharacter].GetComponent<Baby>().enabled = true;
+        characterOptions[selectedCharacter].GetComponent<BoxCollider>().enabled = true;
+    }
+    
 
     // In the game mode there are three phases of questions 
     // Each question has some amount of responses
