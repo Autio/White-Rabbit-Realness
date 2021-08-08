@@ -88,7 +88,7 @@ public class GameController : Singleton<GameController>
                 TitleTexts[1].GetComponent<Shot>().Go();
                 titleTextTriggers = 2;
             }
-            if(Time.time > 1.5f && titleTextTriggers == 2)
+            if(Time.time > 1.2f && titleTextTriggers == 2)
             {
                 TitleTexts[2].GetComponent<Shot>().Go();
                 titleTextTriggers = 3;
