@@ -5,6 +5,7 @@ using UnityEngine;
 public class Scroll : MonoBehaviour
 {
 	public float speed = 2.0f;
+    bool triggered = false;
     public Transform birthArea;
     
     // Start is called before the first frame update
@@ -18,12 +19,12 @@ public class Scroll : MonoBehaviour
     {
         
         transform.Translate(-Vector3.up * Time.deltaTime * speed);
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return) && !triggered)
         {
+            triggered = true;
             transform.gameObject.AddComponent<Rigidbody>();
             transform.gameObject.GetComponent<Rigidbody>().drag = 3;
             Destroy(gameObject, 10);
-            // Send camera down
             
         }
     }

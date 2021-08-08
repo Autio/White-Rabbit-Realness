@@ -961,17 +961,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912c2dba3a687b2bcb688de4d3502db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleTexts:
-  - {fileID: 775329200}
-  - {fileID: 1064023033}
-  - {fileID: 1922717712}
+  playCanvas: {fileID: 1720527142}
   cameraAnchors:
   - {fileID: 47376942}
   - {fileID: 561780800}
-  answerPanel: {fileID: 1320291815}
+  TitleTexts:
+  - {fileID: 775329200}
+  - {fileID: 1064023033}
+  - {fileID: 1922717712}
   limit: 10
   questionText: {fileID: 1228040192}
-  answerOption: {fileID: 7178323945353997625, guid: 6f8c95dec91045ef4aa4d1fec8c28701, type: 3}
+  answerPanel: {fileID: 1320291814}
+  answerOption: {fileID: 0}
   answerOptionAnchors: []
 --- !u!1 &672088204
 GameObject:
