@@ -40,7 +40,7 @@ public class GameController : Singleton<GameController>
 
     List<GameObject> activeOptions;
 
-    private int selectedCharacter;
+    public int selectedCharacter;
     public GameObject[] characterOptions;
 
     // Start is called before the first frame update
@@ -57,7 +57,7 @@ public class GameController : Singleton<GameController>
     {
         if(gameState == GameStates.playing)
         {
-
+            StartGame();
         }
         if(gameState == GameStates.birthing)
         {
@@ -99,6 +99,24 @@ public class GameController : Singleton<GameController>
             }
         }
     }
+
+    public void StartGame()
+    {
+        if(gameState != GameStates.playing)
+        {
+            CameraController.Instance.MoveToNextAnchor(cameraAnchors[1]);
+            gameState = GameStates.playing;
+
+            characterOptions[selectedCharacter].transform.DOMove(new Vector3(
+                GameObject.Find("BabyBirthTarget").transform.position.x,
+                GameObject.Find("BabyBirthTarget").transform.position.y,
+                characterOptions[selectedCharacter].transform.position.z),
+                3.2f
+                );
+            StartCoroutine("ShowCanvas", 2.0f);
+        }
+    }
+    
 
     // Cycle to the next available character or loop around
     public void NextCharacter()

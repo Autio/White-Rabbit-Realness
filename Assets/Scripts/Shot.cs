@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Shot : MonoBehaviour
 {
     // WHITE RABBIT REALNESS
@@ -25,12 +25,18 @@ public class Shot : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = true;
     }
                         
-
+    private IEnumerator Shrink()
+    {
+        yield return new WaitForSeconds(8.0f);
+        GetComponent<TMP_Text>().fontSize -= 5;
+        GetComponent<RectTransform>().localScale *= 0.5f;
+    }
 
     private void OnCollisionEnter(Collision other) {
         if(other.transform.tag == "Background")
         {
             StartCoroutine("AddGravity");
+            StartCoroutine("Shrink");
         }    
     }
     
