@@ -103,6 +103,7 @@ public class GameController : Singleton<GameController>
     // Cycle to the next available character or loop around
     public void NextCharacter()
     {
+        Debug.Log("Picking next character");
         float transitionDuration = .6f;
         Transform characterTransform = characterOptions[selectedCharacter].transform;
         // Move old character away
@@ -117,6 +118,8 @@ public class GameController : Singleton<GameController>
         {
             selectedCharacter = 0;
         }
+        Debug.Log("Selected character " + selectedCharacter);
+
 
         // Swap out the old character and swap in the new one
         characterTransform = characterOptions[selectedCharacter].transform;
@@ -135,11 +138,33 @@ public class GameController : Singleton<GameController>
 
     public void PreviousCharacter()
     {
+        Debug.Log("Picking previous character");
+        float transitionDuration = .6f;
+        Transform characterTransform = characterOptions[selectedCharacter].transform;
+        // Move old character away
+        characterTransform.DOMove(new Vector3(characterTransform.position.x - 20, 
+            characterTransform.position.y, 
+            characterTransform.position.z), transitionDuration);       
+
         selectedCharacter--;
         if(selectedCharacter < 0)
         {
             selectedCharacter = characterOptions.Length - 1;
         }
+
+        // Swap out the old character and swap in the new one
+        characterTransform = characterOptions[selectedCharacter].transform;
+
+        // Make sure they start from the right place
+        characterTransform.position = new Vector3(20, 
+                                                characterTransform.position.y,
+                                                characterTransform.position.z);
+        
+        // Then tween them in
+        characterTransform.DOMove(new Vector3(0, 
+                            characterTransform.position.y, 
+                            characterTransform.position.z), transitionDuration);
+
 
     }
 
