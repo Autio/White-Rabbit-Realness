@@ -4,6 +4,7 @@
         {
             "id": 0,
             "phase" : 0,
+            "character": 0,
             "title": "The baby smiles at you. What do you do?",
             "answers": [
                 {
@@ -27,6 +28,7 @@
         {
             "id": 1,
             "phase" : 0,
+            "character": 0,
             "title": "Now the baby makes high pitched sounds, looking in different directions, waving her small hands. What do you do?",
             "answers": [
                 {
@@ -49,6 +51,7 @@
         {
             "id": 2,
             "phase" : 0,
+            "character": 0,
             "title": "The baby is actually sleeping, and has been for some hours. What do you do?",
             "answers": [
                 {
@@ -71,6 +74,7 @@
         {
             "id": 3,
             "phase" : 0,
+            "character": 0,
             "title": "You are tired, the baby is playing with a blanket. What do you do?",
             "answers": [
                 {
@@ -93,6 +97,7 @@
         {
             "id": 4,
             "phase" : 0,
+            "character": 0,
             "title": "The baby’s diaper stinks, she has slept for approx. ten minutes. What do you do?",
             "answers": [
                 {
@@ -115,6 +120,7 @@
         {
             "id": 5,
             "phase" : 0,
+            "character": 0,
             "title": "The baby is screaming, and you are making a new video game about killing people. What do you do?",
             "answers": [
                 {
@@ -131,6 +137,305 @@
                     "id": 2,
                     "answer": "Pick her up and talk to her, sing Bohemian Rapsody or Rude Boy if needed",
                     "scores": [1, 2, 0]
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "phase" : 0,
+            "character": 0,
+            "title": "You hit your head while holding the baby. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Suck it up",
+                    "scores": [-1,-1, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Scream, then explain to the baby that you are alright and that emotions are cool stuff",
+                    "scores": [0, 2, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Dance the pain away, make sure you hold eye contact with the baby",
+                    "scores": [2, 0, 1]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "phase" : 0,
+            "character": 0,
+            "title": "The baby starts talking to you, but you do not understand a word of what she is saying. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Walk backwards until you reach the door, then think faster than you normally do",
+                    "scores": [-1,-1, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Talk back with phrases and intonation that sounds similar to those she is using. Look at her now and then",
+                    "scores": [0, 1, 1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Stare at her, smile, say a few sentences, ask her if she knows where mommy is",
+                    "scores": [0, 1, -1]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "phase" : 0,
+            "character": 0,
+            "title": "A five-year-old is playing with a basketball next to your kid. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Ask the five-year-old to go and brush her teeth",
+                    "scores": [1, 0, -1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Wait and see",
+                    "scores": [0, -2, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Smile and start playing with the five year old, make sure she calms down somewhat",
+                    "scores": [1, 2, 0]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "phase" : 0,
+            "character": 0,
+            "title": "You are at the local cafe and your baby is starting to cry. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Start breastfeeding the kid, while finishing your coffee",
+                    "scores": [2, 0, 1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Pour the rest of the coffee into your mouth, take the kid to a nearby park, breast feed her there",
+                    "scores": [1, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Go to the toilet and talk to the baby about crying at public places",
+                    "scores": [-1, 1, 0]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "phase" : 0,
+            "character": 0,
+            "title": "The baby’s face is turning blue. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Do basic CPR, call the medical hotline",
+                    "scores": [2, 0, -2]
+                },
+                {
+                    "id": 1,
+                    "answer": "Inspect the baby, smile at her, shake her a bit",
+                    "scores": [2, 0, 3]
+                },
+                {
+                    "id": 2,
+                    "answer": "Google the symptoms, wait and observe",
+                    "scores": [-2, -1, 0]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "phase" : 0,
+            "character": 0,
+            "title": "The baby is unhappy. You are unhappy. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Google depression",
+                    "scores": [-1, -2, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Play some soft Santana, sing a lullaby, try to feed the baby some yoghurt",
+                    "scores": [2, 1, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Sing a soothing lullaby, cry at the beautiful scene you have created",
+                    "scores": [1, 2, -1]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "phase" : 0,
+            "character": 0,
+            "title": "The baby looks at you with a joyous face. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Ask if the plastic toys were fun to play with",
+                    "scores": [1, -1, 1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Smile back, give her a tight hug, laugh",
+                    "scores": [0, 1, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Smile enthusiastically at her, comment on how happy she seems",
+                    "scores": [1, 2, -1]
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "phase" : 0,
+            "character": 0,
+            "title": "Your nephew wants to hold your baby, he is a very active and distractible kid. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Explain how to hold your baby safely, watch him holding her",
+                    "scores": [2, 2, -1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Refuse to let him hold her",
+                    "scores": [-2, -2, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Ask him to come by later, when he has less sugar in his blood system",
+                    "scores": [0, 1, 0]
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "phase" : 0,
+            "character": 0,
+            "title": "Your nephew wants to hold your baby, he is a very active and distractible kid. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Explain how to hold your baby safely, watch him holding her",
+                    "scores": [2, 2, -1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Refuse to let him hold her",
+                    "scores": [-2, -2, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Ask him to come by later, when he has less sugar in his blood system",
+                    "scores": [0, 1, 0]
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "phase" : 0,
+            "character": 0,
+            "title": "Someone is calling you. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Answer then and there",
+                    "scores": [1, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Play with your baby until she falls asleep",
+                    "scores": [1, 0, -1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Turn off the phone and lay down and see what happens",
+                    "scores": [-1, -1, 0]
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "phase" : 0,
+            "character": 0,
+            "title": "Your baby has a doctor’s appointment. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Go and let her have the vaccine",
+                    "scores": [1, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Refuse to answer the doctor’s office, let the baby eat healthy grey food",
+                    "scores": [0, -1, 1]
+                },
+                {
+                    "id": 2,
+                    "answer": "Ask about the vaccine",
+                    "scores": [1, 0, -1]
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "phase" : 0,
+            "character": 0,
+            "title": "The baby fell off the chair and hit her shoulder. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Wait and see if she shakes it off",
+                    "scores": [-2, 0, 1]
+                },
+                {
+                    "id": 1,
+                    "answer": "Help her up, soothe her, look at her shoulder",
+                    "scores": [1, 1, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Say that you are sorry for her, then act as if you yourself are falling off the chair",
+                    "scores": [1, 1, 1]
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "phase" : 0,
+            "character": 0,
+            "title": "A child psychologist comes to your house to ask about how you feel. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Talk about emotions and children in general terms",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Say the truth",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Show the psychologist how you interact with your child",
+                    "scores": [0, 0, 0]
                 }
             ]
         }

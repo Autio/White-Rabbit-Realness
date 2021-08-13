@@ -18,6 +18,7 @@ public class Questions
 public class Question{
     public int id;
     public int phase;
+    public int character;
     public string title;
     public Answer[] answers;
 }
