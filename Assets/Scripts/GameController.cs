@@ -43,6 +43,8 @@ public class GameController : Singleton<GameController>
     public int selectedCharacter;
     public GameObject[] characterOptions;
 
+    float startTimer = 85;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +77,11 @@ public class GameController : Singleton<GameController>
 
         if(gameState == GameStates.starting)
         {
+            startTimer -= Time.deltaTime;
+            if(startTimer < 0)
+            {
+                GoToBirthing();
+            }
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 GoToBirthing();
