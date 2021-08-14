@@ -128,7 +128,7 @@ public class GameController : Singleton<GameController>
     public void NextCharacter()
     {
         Debug.Log("Picking next character");
-        float transitionDuration = .6f;
+        float transitionDuration = .39f;
         Transform characterTransform = characterOptions[selectedCharacter].transform;
         // Move old character away
         
