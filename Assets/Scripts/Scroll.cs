@@ -11,6 +11,8 @@ public class Scroll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(gameObject, 45);
+
     //    CameraController.Instance.MoveToNextAnchor(birthArea);
     }
 
@@ -24,7 +26,7 @@ public class Scroll : MonoBehaviour
             triggered = true;
             transform.gameObject.AddComponent<Rigidbody>();
             transform.gameObject.GetComponent<Rigidbody>().drag = 3;
-            Destroy(gameObject, 10);
+            Destroy(gameObject, 8);
             
         }
     }

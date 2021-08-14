@@ -77,9 +77,7 @@ public class GameController : Singleton<GameController>
         {
             if(Input.GetKeyDown(KeyCode.Return))
             {
-                // Skip the start
-                gameState = GameStates.birthing;
-                CameraController.Instance.MoveToNextAnchor(cameraAnchors[0]);
+                GoToBirthing();
             }
 
             if(Time.time > 0.1f && titleTextTriggers == 0)
@@ -98,6 +96,13 @@ public class GameController : Singleton<GameController>
                 titleTextTriggers = 3;
             }
         }
+    }
+
+    public void GoToBirthing()
+    {
+        // Skip the start
+        gameState = GameStates.birthing;
+        CameraController.Instance.MoveToNextAnchor(cameraAnchors[0]);
     }
 
     public void StartGame()

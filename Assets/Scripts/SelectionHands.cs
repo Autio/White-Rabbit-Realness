@@ -5,9 +5,19 @@ using DG.Tweening;
 
 public class SelectionHands : MonoBehaviour
 {
+     float scaleSpeed = 13;
 
     int counter = 0;
-    
+    void Start() {
+
+          var sequence = DOTween.Sequence()
+               .Append(transform.DOPunchScale(new Vector3(0.8f, 0.8f, 0.8f), scaleSpeed,4, 0.3f));
+          sequence.SetLoops(-1, LoopType.Yoyo);
+
+    }
+    void Update() {
+
+    }
     
     
    void OnMouseDown() {
