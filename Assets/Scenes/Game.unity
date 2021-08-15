@@ -3621,7 +3621,7 @@ GameObject:
   - component: {fileID: 750368370}
   - component: {fileID: 750368369}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: BarCAnvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6905,6 +6905,7 @@ GameObject:
   - component: {fileID: 1433541549}
   - component: {fileID: 1433541551}
   - component: {fileID: 1433541550}
+  - component: {fileID: 1433541552}
   m_Layer: 5
   m_Name: ActiveBar
   m_TagString: Untagged
@@ -6970,6 +6971,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433541548}
   m_CullTransparentMesh: 1
+--- !u!114 &1433541552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433541548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c8ec80f778a4a44966966a08d42404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foregroundImage: {fileID: 1433541550}
+  updateSpeedSeconds: 0.5
 --- !u!1 &1434446154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7063,6 +7078,7 @@ GameObject:
   - component: {fileID: 1478636962}
   - component: {fileID: 1478636964}
   - component: {fileID: 1478636963}
+  - component: {fileID: 1478636965}
   m_Layer: 5
   m_Name: PassiveBar
   m_TagString: Untagged
@@ -7128,6 +7144,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478636961}
   m_CullTransparentMesh: 1
+--- !u!114 &1478636965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478636961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c8ec80f778a4a44966966a08d42404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foregroundImage: {fileID: 1478636963}
+  updateSpeedSeconds: 0.5
 --- !u!1 &1507723963
 GameObject:
   m_ObjectHideFlags: 0
