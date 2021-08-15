@@ -10,14 +10,6 @@ public class BarManager : MonoBehaviour
     public float current;
     private float max = 5;
 
-
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            ModifyLevel(1f);
-        }
-
-    }
     public void ModifyLevel(float amount) {
         current += amount;
         float currentLevelPct = current / max; 

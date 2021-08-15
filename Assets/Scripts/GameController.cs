@@ -24,13 +24,14 @@ public class GameController : Singleton<GameController>
     // Expressive v inexpressive
     // Animal v human
     int[] gameBars = {0,0,0};
+    public Bar[] bars;
     List<int> questionsAsked;
     Question[] qs;
     // How many questions does the player need to pass before the game is won? 
     int questionLimit = 10;
 
     // Player needs to stay within -limit and limit
-    public int limit = 10;
+    public int limit = 5;
 
     public GameObject questionText;
     public GameObject answerPanel;
@@ -278,14 +279,93 @@ public class GameController : Singleton<GameController>
 
     public void AnswerChosen(int[] scores)
     {
+        int[] oldBarValues = {0,0,0};
+        oldBarValues[0] = gameBars[0];
+        oldBarValues[1] = gameBars[1];
+        oldBarValues[2] = gameBars[2];
+
         gameBars[0] += scores[0];
         gameBars[1] += scores[1];
         gameBars[2] += scores[2];
+        float level = 0;
 
+
+        // Bars can be 
+        // Move the bars appropriately
+        if(scores[0] != 0)
+        {
+            level = gameBars[0] / (float) limit;
+            // Active
+            if(gameBars[0] >= 0)
+            {
+                bars[0].HandlePctChanged(level);
+            }
+            // Passive
+            if(gameBars[0] <= 0)
+            {
+                bars[1].HandlePctChanged(level);
+            }
+        }
+        if(scores[1] != 0)
+        {
+            level = Mathf.Abs(gameBars[1] / (float) limit);
+            // Expressive
+            if(gameBars[1] >= 0)
+            {
+                bars[2].HandlePctChanged(level);
+            }
+            // Inexpressive
+            if(gameBars[1] <= 0)
+            {
+                bars[3].HandlePctChanged(level);
+            }
+        }
+        if(scores[2] != 0)
+        {
+            level = Mathf.Abs(gameBars[2] / (float) limit);
+            // Animal
+            if(gameBars[2] >= 0)
+            {
+                bars[4].HandlePctChanged(level);
+            }
+            // Human
+            if(gameBars[2] <= 0)
+            {
+                bars[5].HandlePctChanged(level);
+            }
+        }
+
+        
+        if (gameBars[0] < 0 && oldBarValues[0] > 0)
+        {
+            bars[0].HandlePctChanged(0);
+        }
+        if (gameBars[0] > 0 && oldBarValues[0] < 0)
+        {
+            bars[1].HandlePctChanged(0);
+        }
+        if (gameBars[1] < 0 && oldBarValues[1] > 0)
+        {
+            bars[2].HandlePctChanged(0);
+        }
+        if (gameBars[1] > 0 && oldBarValues[1] < 0)
+        {
+            bars[3].HandlePctChanged(0);
+        }
+        if (gameBars[2] < 0 && oldBarValues[2] > 0)
+        {
+            bars[4].HandlePctChanged(0);
+        }
+        if (gameBars[0] > 0 && oldBarValues[0] < 0)
+        {
+            bars[5].HandlePctChanged(0);
+        }
+
+
+        
         scoreTexts[0].GetComponent<TMP_Text>().text = gameBars[0].ToString();
         scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
         scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
-
         NextQuestion(activePhase, questionsAsked);
     }
 
