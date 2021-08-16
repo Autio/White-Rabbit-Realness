@@ -11,11 +11,11 @@ public class Bar : MonoBehaviour
     private float updateSpeedSeconds = 0.5f;
 
     public BarManager barManager;
-
+    public string noticeText = "Hello world";
     // Start is called before the first frame update
     void Start()
     {
-        barManager.OnBarPctChanged += HandlePctChanged;
+//        barManager.OnBarPctChanged += HandlePctChanged;
     }
 
     // Update is called once per frame
@@ -37,11 +37,14 @@ public class Bar : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             fillAmount = Mathf.Lerp(preChangePct, pct, elapsed / updateSpeedSeconds);
-            Debug.Log(fillAmount);
             foregroundImage.fillAmount = fillAmount;
             
             yield return null;
         }
         foregroundImage.fillAmount = pct;
+    }
+
+    private void OnMouseOver(){
+        Debug.Log(noticeText);
     }
 }

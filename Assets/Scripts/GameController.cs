@@ -43,6 +43,7 @@ public class GameController : Singleton<GameController>
 
     public int selectedCharacter;
     public GameObject[] characterOptions;
+    public GameObject barGUI;
 
     float startTimer = 85;
 
@@ -128,6 +129,7 @@ public class GameController : Singleton<GameController>
                 );
             StartCoroutine("ShowCanvas", 2.0f);
             StartCoroutine("MaterializeBaby", 3.0f);
+            
         }
     }
     
@@ -200,10 +202,11 @@ public class GameController : Singleton<GameController>
 
     }
 
-    private IEnumerator ShowCanvas(float delay = 2.0f)
+    private IEnumerator ShowCanvas(float delay = 1.9f)
     {
         yield return new WaitForSeconds(delay);
         playCanvas.SetActive(true);
+        barGUI.SetActive(true);
         NextQuestion(activePhase, questionsAsked);
     }
 
@@ -294,15 +297,18 @@ public class GameController : Singleton<GameController>
         // Move the bars appropriately
         if(scores[0] != 0)
         {
-            level = gameBars[0] / (float) limit;
+            level = Mathf.Abs(gameBars[0] / (float) limit);
             // Active
             if(gameBars[0] >= 0)
             {
                 bars[0].HandlePctChanged(level);
+                bars[1].HandlePctChanged(0);
+
             }
             // Passive
             if(gameBars[0] <= 0)
             {
+                bars[0].HandlePctChanged(0);
                 bars[1].HandlePctChanged(level);
             }
         }
@@ -312,11 +318,13 @@ public class GameController : Singleton<GameController>
             // Expressive
             if(gameBars[1] >= 0)
             {
+                bars[3].HandlePctChanged(0);
                 bars[2].HandlePctChanged(level);
             }
             // Inexpressive
             if(gameBars[1] <= 0)
             {
+                bars[2].HandlePctChanged(0);
                 bars[3].HandlePctChanged(level);
             }
         }
@@ -326,43 +334,45 @@ public class GameController : Singleton<GameController>
             // Animal
             if(gameBars[2] >= 0)
             {
+                bars[5].HandlePctChanged(0);
                 bars[4].HandlePctChanged(level);
             }
             // Human
             if(gameBars[2] <= 0)
             {
+                bars[4].HandlePctChanged(0);
                 bars[5].HandlePctChanged(level);
             }
         }
 
         
-        if (gameBars[0] < 0 && oldBarValues[0] > 0)
-        {
-            bars[0].HandlePctChanged(0);
-        }
-        if (gameBars[0] > 0 && oldBarValues[0] < 0)
-        {
-            bars[1].HandlePctChanged(0);
-        }
-        if (gameBars[1] < 0 && oldBarValues[1] > 0)
-        {
-            bars[2].HandlePctChanged(0);
-        }
-        if (gameBars[1] > 0 && oldBarValues[1] < 0)
-        {
-            bars[3].HandlePctChanged(0);
-        }
-        if (gameBars[2] < 0 && oldBarValues[2] > 0)
-        {
-            bars[4].HandlePctChanged(0);
-        }
-        if (gameBars[0] > 0 && oldBarValues[0] < 0)
-        {
-            bars[5].HandlePctChanged(0);
-        }
+        // if (gameBars[0] < 0 && oldBarValues[0] > 0)
+        // {
+        //     bars[0].HandlePctChanged(0);
+        // }
+        // if (gameBars[0] > 0 && oldBarValues[0] < 0)
+        // {
+        //     bars[1].HandlePctChanged(0);
+        // }
+        // if (gameBars[1] < 0 && oldBarValues[1] > 0)
+        // {
+        //     bars[2].HandlePctChanged(0);
+        // }
+        // if (gameBars[1] > 0 && oldBarValues[1] < 0)
+        // {
+        //     bars[3].HandlePctChanged(0);
+        // }
+        // if (gameBars[2] < 0 && oldBarValues[2] > 0)
+        // {
+        //     bars[4].HandlePctChanged(0);
+        // }
+        // if (gameBars[0] > 0 && oldBarValues[0] < 0)
+        // {
+        //     bars[5].HandlePctChanged(0);
+        // }
 
 
-        
+
         scoreTexts[0].GetComponent<TMP_Text>().text = gameBars[0].ToString();
         scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
         scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
