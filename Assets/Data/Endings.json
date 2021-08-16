@@ -1,0 +1,47 @@
+{
+	"endings":
+	[
+		{
+
+			"id": 0,
+			"desc": "Active",
+			"text": "Work hard, play harder! As a busy bird, you do alright! As a parent, not so much. Rest could be a beautiful thing, just ask the sloth. Please - you do not always have to micromanage every second of the day. Your child is exhausted, hence her blank eyes and stomach cramps. At the library there is a whole section on psychosomatic illnesses and we recommend that you think about that. Think about it, and stay the fuck home! With your toddler!"
+		},
+		{
+
+			"id": 1,
+			"desc": "Passive",
+			"text": "I am afraid that even though you might be attentive sometime, clearly your baby needs more stimulation to develop normally - not everybody fancy staring at the wall until it starts a show. Maybe you should get her a toy, or take her outside so that she might get familiar with sunlight, birds and banks, or even those elderly women with the red hats, grunting national anthems?"
+		},
+		{
+			"id": 2,
+			"desc": "Expressive",
+			"text": "Alas! You have been so intense and ever-present that your child has lost a sense of personal integrity and now finds herself constantly overwhelmed. You might find guided meditation helpful to establish a sense of who you are as a separate being. Make sure to drink some white tea, or join a progressive political party."
+		},
+		{
+
+			"id": 3,
+			"desc": "Inexpressive",
+			"text": "Sorry, your baby has not developed appropriately emotionally and cognitively due to your consistent neglect. You should read more about attachment and emotional bonding before considering interacting with minors."
+		},
+
+		{
+
+			"id": 4,
+			"desc": "Animal",
+			"text": "Grrrrr! Bodies! Sweat! Slime! You are so fond of bodies, and that should be celebrated and praised. Sex is good, and the clitoris might be the most intersting part of this universe. Still, your baby does not enjoy your groans as much as you could hope for, considering that she is hungry, tired, lonely and a bit sick most of the time. If you could invite your sex partners to be nannies from time to time, maybe you would have time to schedule a doctor’s appointment for her. Or buy some milk."
+		},
+		{
+
+			"id": 5,
+			"desc": "Human",
+			"text": "This might sound strange, but actually you have turned into something Elon Musk might be really proud of, a very advanced, humanoid with faculties in perfect harmony with the postmodern world. You are so human that one might turn into copper, gold or silver, and most likely lithium and cobalt when touching you. Lucky for you, babies might be extracted from the same ingredients very soon."
+		},
+		{
+
+			"id": 6,
+			"desc": "Best win",
+			"text": "Oh hello there! Excellent work! Did you cheat? Cause the sensitivity you are administering across different situations is just amazing to watch! You regulate yourself and the baby in a very nuanced way. Both the regulation of distance, emotional expressiveness and attunement to the baby’s states of mind are handled well. Alongside this, the level of stimulation you offer the kid and the intensity of the interactions are well adjusted. Would you consider working with children in the future?"
+		}
+	]
+}

@@ -8,7 +8,11 @@ using TMPro;
 
 public class GameController : Singleton<GameController>
 {
-    enum GameStates {starting, birthing, playing}
+    // TODO: Finalize game loop:
+    // TODO: End screen when bar limit reached (what if multiple reached? Then show first one)
+    // TODO: Reload screen (Live Again, Leave Again)
+
+    enum GameStates {starting, birthing, playing, ending}
     GameStates gameState;
     public GameObject playCanvas;
     public Transform[] cameraAnchors;
@@ -23,10 +27,11 @@ public class GameController : Singleton<GameController>
     // Active v passive
     // Expressive v inexpressive
     // Animal v human
-    int[] gameBars = {0,0,0};
+    public int[] gameBars = {0,0,0};
     public Bar[] bars;
     List<int> questionsAsked;
     Question[] qs;
+    Endings endings;
     // How many questions does the player need to pass before the game is won? 
     int questionLimit = 10;
 
@@ -45,7 +50,8 @@ public class GameController : Singleton<GameController>
     public GameObject[] characterOptions;
     public GameObject barGUI;
 
-    float startTimer = 85;
+    public GameObject endText;
+    float startTimer = 80;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +73,7 @@ public class GameController : Singleton<GameController>
         {
             // Load the questions to have them ready
             qs = GetComponent<JSONReader>().questions.questions;
+            endings = GetComponent<JSONReader>().endings;
 
             if(Input.GetKeyDown(KeyCode.Return))
             {
@@ -202,12 +209,26 @@ public class GameController : Singleton<GameController>
 
     }
 
+    public void GoToVeryEnd()
+    {
+        CameraController.Instance.MoveToNextAnchor(cameraAnchors[cameraAnchors.Length - 1]);
+
+    }
+
     private IEnumerator ShowCanvas(float delay = 1.9f)
     {
         yield return new WaitForSeconds(delay);
         playCanvas.SetActive(true);
         barGUI.SetActive(true);
         NextQuestion(activePhase, questionsAsked);
+    }
+
+    private IEnumerator HideCanvas(float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        playCanvas.SetActive(false);
+        barGUI.SetActive(false);
+
     }
 
     private IEnumerator MaterializeBaby(float delay = 3.0f)
@@ -237,6 +258,11 @@ public class GameController : Singleton<GameController>
     {
         ClearQuestion();
         Question question = null;
+
+        if(CheckEnd())
+        {
+            return;
+        }
         // The game has been passed
         if(questionsAsked.Count > questionLimit)
         {
@@ -345,34 +371,6 @@ public class GameController : Singleton<GameController>
             }
         }
 
-        
-        // if (gameBars[0] < 0 && oldBarValues[0] > 0)
-        // {
-        //     bars[0].HandlePctChanged(0);
-        // }
-        // if (gameBars[0] > 0 && oldBarValues[0] < 0)
-        // {
-        //     bars[1].HandlePctChanged(0);
-        // }
-        // if (gameBars[1] < 0 && oldBarValues[1] > 0)
-        // {
-        //     bars[2].HandlePctChanged(0);
-        // }
-        // if (gameBars[1] > 0 && oldBarValues[1] < 0)
-        // {
-        //     bars[3].HandlePctChanged(0);
-        // }
-        // if (gameBars[2] < 0 && oldBarValues[2] > 0)
-        // {
-        //     bars[4].HandlePctChanged(0);
-        // }
-        // if (gameBars[0] > 0 && oldBarValues[0] < 0)
-        // {
-        //     bars[5].HandlePctChanged(0);
-        // }
-
-
-
         scoreTexts[0].GetComponent<TMP_Text>().text = gameBars[0].ToString();
         scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
         scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
@@ -415,6 +413,27 @@ public class GameController : Singleton<GameController>
 
     void WinGame()
     {
+        gameState = GameStates.ending;
+        // Hide GUI
+        StartCoroutine("HideCanvas", 0);
+        CameraController.Instance.MoveToNextAnchor(cameraAnchors[2]);
+
+    }
+
+    void EndGame()
+    {
+        gameState = GameStates.ending;
+        // Hide GUI
+        StartCoroutine("HideCanvas", 3.0f);
+        StartCoroutine("MoveToEnd", 4.2f);
+        
+
+        
+    }
+
+    IEnumerator MoveToEnd(float delay){
+        yield return new WaitForSeconds(delay);
+        CameraController.Instance.MoveToNextAnchor(cameraAnchors[2]);
 
     }
 
@@ -423,15 +442,43 @@ public class GameController : Singleton<GameController>
         // check all bar values against the limit
         for (int i = 0; i < gameBars.Length; i++)
         {
-            if (gameBars[i] < -limit || gameBars[i] > limit)
+            if (gameBars[i] <= -limit || gameBars[i] >= limit)
             {
-                // Game over
-                // Display relevant end text
-                // Need to know the bar and whether it was + or - 
+                EndGame();
+                // Update the ending text accordingly
+                Debug.Log("ending " + i);
+                Debug.Log(gameBars[i]);
+                if (i == 0 && gameBars[i] > 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(0);
+                }
+                if (i == 0 && gameBars[i] < 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(1);
+                }
+                if (i == 1 && gameBars[i] > 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(2);
+                }
+                if (i == 1 && gameBars[i] < 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(3);
+                }
+                if (i == 2 && gameBars[i] > 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(4);
+                }
+                if (i == 2 && gameBars[i] < 0)
+                {
+                    endText.GetComponent<TMP_Text>().text = endings.EndingText(5);
+                }
                 return true;
             } 
         }
         return false;
+
+        // 0 1 2
+        // act emp ani
     }
 
 
