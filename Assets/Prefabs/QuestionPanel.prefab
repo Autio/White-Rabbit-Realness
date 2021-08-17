@@ -99,7 +99,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7652999935257027552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
@@ -143,19 +143,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_SizeDelta.x
@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 48.81
       objectReference: {fileID: 0}
     - target: {fileID: 3407530463279369777, guid: 703f93a2a2cceda2199e44c3906fd170, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

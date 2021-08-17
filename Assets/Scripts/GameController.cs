@@ -238,6 +238,7 @@ public class GameController : Singleton<GameController>
         yield return new WaitForSeconds(delay);
         characterOptions[selectedCharacter].layer = 3;
         Rigidbody rb = characterOptions[selectedCharacter].AddComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         rb.useGravity = false;
         characterOptions[selectedCharacter].GetComponent<Baby>().enabled = true;
         characterOptions[selectedCharacter].GetComponent<BoxCollider>().enabled = true;
@@ -267,13 +268,14 @@ public class GameController : Singleton<GameController>
         if(questionsAsked.Count > questionLimit)
         {
             WinGame();
+            return;
         }
         // Load the next question from the array
         int t = 100;
         while (t > 0)
         {
             int r = Random.Range(0, qs.Length);
-            if(!questionsAsked.Contains(qs[r].id))// && questions[r].phase == activePhase)
+            if(!questionsAsked.Contains(qs[r].id) && qs[r].phase != 2)// && questions[r].phase == activePhase)
             {
                  questionsAsked.Add(r); 
                  question = qs[r];  
@@ -415,14 +417,47 @@ public class GameController : Singleton<GameController>
     {
         gameState = GameStates.ending;
         // Hide GUI
-        StartCoroutine("HideCanvas", 0);
-        CameraController.Instance.MoveToNextAnchor(cameraAnchors[2]);
+        questionText.GetComponent<TMP_Text>().text = "Your baby is growing up.";
+
+        // Happy ending
+        endText.GetComponent<TMP_Text>().text = endings.EndingText(6);
+
+        int threshold = 2; // How much leeway does the player have to get a good ending
+
+        // Ending if the scores are a bit too close 
+        string end = "Congrats! Your parenting style is above average (at least in this game). But you do have some minor problems in regulating ";
+        string check = end;
+        
+        if(gameBars[0] > (limit  - threshold) || gameBars[0] < (-limit + threshold))
+        {
+            end += " your activity level, ";
+        }
+        if(gameBars[1] > (limit  - threshold) || gameBars[1] < (-limit + threshold))
+        {
+            end += " your emotional expressiveness, ";
+        }
+        if(gameBars[2] > (limit  - threshold) || gameBars[2] < (limit + threshold))
+        {
+            end += " how animalistic vs humanoid you behave, ";
+        }
+
+        end += "but the balance is still there! To some degree! Maybe you should adopt a cat?";
+        if(end != check)
+        {
+            endText.GetComponent<TMP_Text>().text = end;
+        }
+        
+        StartCoroutine("HideCanvas", 3.0f);
+        StartCoroutine("MoveToEnd", 4.2f);
 
     }
 
     void EndGame()
     {
         gameState = GameStates.ending;
+
+        questionText.GetComponent<TMP_Text>().text = "Oh. Dear.";
+
         // Hide GUI
         StartCoroutine("HideCanvas", 3.0f);
         StartCoroutine("MoveToEnd", 4.2f);

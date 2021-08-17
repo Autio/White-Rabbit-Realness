@@ -438,6 +438,162 @@
                     "scores": [0, 0, 0]
                 }
             ]
+        },
+        {
+            "id": 18,
+            "phase" : 2,
+            "character": 0,
+            "title": "You fear that your baby hates you. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "You stop talking to her to see whether she approaches you. You also try to leave the room for a few minutes, maybe she will call you",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "You accept her feelings and try to learn a new sport - water polo",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "You teach her to use signs in order for her to reveal her inner feelings. Multiple times you state that you love her through sign language, you point at her and at your heart and smile for up to five minutes",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "phase" : 2,
+            "character": 0,
+            "title": "Your baby is mostly angry or sad, and she bits your nipple all the time. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "You act cool and state that you love her. You find some vaseline and listen to soothing music (Adele)",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "You say “stop” and act like you mean it. When she looks at you, you make a funny face. If she continues to frustrate you, you make an angry face and sneer to get your message across.",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "phase" : 2,
+            "character": 0,
+            "title": "Your baby does not look like you. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "You grieve appropriately",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "You refuse to grieve and head for the hairdresser to get the exact same haircut as your baby",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "You grieve, then do some yoga, then call a therapist, then get another kid that looks more like you",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "phase" : 2,
+            "character": 0,
+            "title": "You meet a hot man online who states in his profile that he does not wanna meet women who have kids of their own. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "You approach him and ask for a  date. Surely when he get to meet you he will change his mind.",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "You start a long argument with him to prove that he lacks perspective in life, while also asking him to come over to have a glass of wine and look at you and look at your toddler sleeping and look back at you",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "You send him an honest message about your life situation and ask whether the two of you can date some years from now - your daughter is soon to be a schoolgirl and might take care of herself",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "phase" : 2,
+            "character": 0,
+            "title": "A friend posts a photo of her newborn son on facebook and gets tons of likes. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "You take and then post several pictures of your daughter playing in the tube, smiling, crying, sleeping and kissing dogs.",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "You comment on your friends profile that you are happy for him but that birth is private and only the baby's feet should be posted online",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "You do one week without your phone and sleep a lot instead",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "phase" : 2,
+            "character": 0,
+            "title": "Your child has grown old, she now confronts you with her upbringing, stating that she needs therapy. What do you do?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Explain how unfair her allegations are - did she ever try parenthood herself?",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Listen to her and ask critical questions that might illuminate her stand - and her self indulgence",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Hold her for a long time, let her cry, say that you are sorry. Take a year on a pilgrimage to digest and reflect. Look at statues of Buddha",
+                    "scores": [0, 0, 0]
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "phase" : 2,
+            "character": 0,
+            "title": "Someone is calling you. Who is it?",
+            "answers": [
+                {
+                    "id": 0,
+                    "answer": "Your lover",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 1,
+                    "answer": "Your third husband",
+                    "scores": [0, 0, 0]
+                },
+                {
+                    "id": 2,
+                    "answer": "Your daughter",
+                    "scores": [0, 0, 0]
+                }
+            ]
         }
     ]
 
