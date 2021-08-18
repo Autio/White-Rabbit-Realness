@@ -134,6 +134,8 @@ public class GameController : Singleton<GameController>
                 characterOptions[selectedCharacter].transform.position.z),
                 3.2f
                 );
+            
+            GameObject.Find("LadyHead").GetComponent<Head>().targetBaby = characterOptions[selectedCharacter];
             StartCoroutine("ShowCanvas", 2.0f);
             StartCoroutine("MaterializeBaby", 3.0f);
             
@@ -257,6 +259,7 @@ public class GameController : Singleton<GameController>
 
     void NextQuestion(int activePhase, List<int> questionsAsked)
     {
+        
         ClearQuestion();
         Question question = null;
 
@@ -270,21 +273,38 @@ public class GameController : Singleton<GameController>
             WinGame();
             return;
         }
-        // Load the next question from the array
-        int t = 100;
-        while (t > 0)
-        {
-            int r = Random.Range(0, qs.Length);
-            if(!questionsAsked.Contains(qs[r].id) && qs[r].phase != 2)// && questions[r].phase == activePhase)
-            {
-                 questionsAsked.Add(r); 
-                 question = qs[r];  
-                 t = -1;       
-                 break;
-            }
-            t--;
-        }
 
+        int t = 100;
+        if(questionsAsked.Count == questionLimit)
+        {
+            // Final question
+            while (t > 0)
+            {
+                int r = Random.Range(0, qs.Length);
+                if(!questionsAsked.Contains(qs[r].id) && qs[r].phase == 2)
+                {
+                    questionsAsked.Add(r); 
+                    question = qs[r];  
+                    t = -1;       
+                    break;
+                }
+                t--;
+            }
+        } else {
+            // Load the next question from the array
+            while (t > 0)
+            {
+                int r = Random.Range(0, qs.Length);
+                if(!questionsAsked.Contains(qs[r].id) && qs[r].phase != 2)// && questions[r].phase == activePhase)
+                {
+                    questionsAsked.Add(r); 
+                    question = qs[r];  
+                    t = -1;       
+                    break;
+                }
+                t--;
+            }
+        }
         Debug.Log("Question picked " + question.title);
 
         if (t == 0)
@@ -428,17 +448,33 @@ public class GameController : Singleton<GameController>
         string end = "Congrats! Your parenting style is above average (at least in this game). But you do have some minor problems in regulating ";
         string check = end;
         
+        int extras = 0;
         if(gameBars[0] > (limit  - threshold) || gameBars[0] < (-limit + threshold))
         {
             end += " your activity level, ";
+            extras++;
         }
         if(gameBars[1] > (limit  - threshold) || gameBars[1] < (-limit + threshold))
         {
-            end += " your emotional expressiveness, ";
+            if(extras > 0)
+            {
+                end += " and your emotional expressiveness, ";
+            } else
+            {
+                end += " your emotional expressiveness, ";
+            }
+            
         }
         if(gameBars[2] > (limit  - threshold) || gameBars[2] < (limit + threshold))
         {
-            end += " how animalistic vs humanoid you behave, ";
+            if(extras > 0)
+            { 
+                end += " and how animalistic vs humanoid you behave, ";
+            }
+            else
+            {
+                end += " how animalistic vs humanoid you behave, ";
+            }
         }
 
         end += "but the balance is still there! To some degree! Maybe you should adopt a cat?";
