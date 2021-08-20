@@ -50,6 +50,11 @@ public class GameController : Singleton<GameController>
     public GameObject endText;
     float startTimer = 80;
 
+    public Color chosenAnswerColor;
+    public Color chosenTextColor;
+
+    public GameObject reactionTextPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -337,6 +342,19 @@ public class GameController : Singleton<GameController>
     {
         // Remove the other options from view
         ClearQuestionsExcept(chosenAnswer);
+        // Make the chosen answer pop out
+        chosenAnswer.GetComponent<Image>().color = chosenAnswerColor;
+        chosenAnswer.transform.Find("Text").GetComponent<TMP_Text>().color = chosenTextColor;
+
+        // Create reaction texts
+        if(scores[0] != 0)
+        {
+            Debug.Log("Creatin'!");
+       
+            // Should be UI object
+       //     GameObject rt = Instantiate(reactionTextPrefab, GameObject.Find("Reaction").transform.position, Quaternion.identity);
+            //Destroy(rt, 2f);
+        }
 
         int[] oldBarValues = {0,0,0};
         oldBarValues[0] = gameBars[0];
@@ -405,7 +423,6 @@ public class GameController : Singleton<GameController>
         scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
         scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
 
-
         StartCoroutine(TransitionToNextQuestions());  // NextQuestion(activePhase, questionsAsked);
     }
 
@@ -462,8 +479,6 @@ public class GameController : Singleton<GameController>
         {
             activeOptions.Remove(a);
         }
-
-        Debug.Log("Active options: " + activeOptions.Count);
         
     }
 
@@ -496,7 +511,7 @@ public class GameController : Singleton<GameController>
         string check = end;
         
         int extras = 0;
-        if(gameBars[0] > (limit  - threshold) || gameBars[0] < (-limit + threshold))
+        if(gameBars[0] > (limit - threshold) || gameBars[0] < (-limit + threshold))
         {
             end += " your activity level, ";
             extras++;
@@ -538,19 +553,16 @@ public class GameController : Singleton<GameController>
     void EndGame()
     {
         gameState = GameStates.ending;
-
         questionText.GetComponent<TMP_Text>().text = "Oh. Dear.";
 
         // Hide GUI
         StartCoroutine("HideCanvas", 3.0f);
         StartCoroutine("MoveToEnd", 4.2f);
-        
     }
 
     IEnumerator MoveToEnd(float delay){
         yield return new WaitForSeconds(delay);
         CameraController.Instance.MoveToNextAnchor(cameraAnchors[2]);
-
     }
 
     bool CheckEnd()
@@ -593,9 +605,6 @@ public class GameController : Singleton<GameController>
         }
         return false;
 
-        // 0 1 2
-        // act emp ani
     }
-
 
 }
