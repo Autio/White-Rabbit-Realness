@@ -8,6 +8,9 @@ public class AnswerScores : MonoBehaviour
     
     public void AnswerChosen()
     {
-        GameController.Instance.AnswerChosen(scores);
+        if(GameController.Instance.gameState == GameController.GameStates.playing)
+        {
+            GameController.Instance.AnswerChosen(scores, this.gameObject);
+        }
     }
 }

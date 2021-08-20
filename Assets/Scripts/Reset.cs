@@ -17,7 +17,6 @@ public class Reset : MonoBehaviour
     }
 
     private IEnumerator ResetLevel(){
-
         GameController.Instance.GoToVeryEnd();
         yield return new WaitForSeconds(1f);
         string currentSceneName = SceneManager.GetActiveScene().name;

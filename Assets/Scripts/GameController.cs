@@ -8,12 +8,9 @@ using TMPro;
 
 public class GameController : Singleton<GameController>
 {
-    // TODO: Finalize game loop:
-    // TODO: End screen when bar limit reached (what if multiple reached? Then show first one)
-    // TODO: Reload screen (Live Again, Leave Again)
 
-    enum GameStates {starting, birthing, playing, ending}
-    GameStates gameState;
+    public enum GameStates {starting, birthing, playing, transitioning, ending}
+    public GameStates gameState;
     public GameObject playCanvas;
     public Transform[] cameraAnchors;
     public Transform[] TitleTexts;
@@ -80,7 +77,6 @@ public class GameController : Singleton<GameController>
                 CameraController.Instance.MoveToNextAnchor(cameraAnchors[1]);
                 gameState = GameStates.playing;
                 StartCoroutine("ShowCanvas", 2.0f);
-
             }
         }
 
@@ -222,7 +218,8 @@ public class GameController : Singleton<GameController>
         yield return new WaitForSeconds(delay);
         playCanvas.SetActive(true);
         barGUI.SetActive(true);
-        NextQuestion(activePhase, questionsAsked);
+        Question q = NextQuestion(activePhase, questionsAsked);
+        StartCoroutine(CreateAnswer(q, .16f));
     }
 
     private IEnumerator HideCanvas(float delay = 0f)
@@ -246,7 +243,6 @@ public class GameController : Singleton<GameController>
         characterOptions[selectedCharacter].GetComponent<BoxCollider>().enabled = true;
     }
     
-
     // In the game mode there are three phases of questions 
     // Each question has some amount of responses
     // Each response moves one or more bars in a direction by one or more points
@@ -257,21 +253,22 @@ public class GameController : Singleton<GameController>
     // Structure: 
     // { id, phase, question, answers: { answer, scores: [0,0,0] }}
 
-    void NextQuestion(int activePhase, List<int> questionsAsked)
+    Question NextQuestion(int activePhase, List<int> questionsAsked)
     {
-        
+        gameState = GameStates.playing;
+
         ClearQuestion();
         Question question = null;
 
         if(CheckEnd())
         {
-            return;
+            return null;
         }
         // The game has been passed
         if(questionsAsked.Count > questionLimit)
         {
             WinGame();
-            return;
+            return null;
         }
 
         int t = 100;
@@ -309,27 +306,38 @@ public class GameController : Singleton<GameController>
 
         if (t == 0)
         {
-            return;
+            return null;
         }
 
-        // Display question text
-        questionText.GetComponent<TMP_Text>().text = question.title;
+        
         // Display options one by one 
+        return question;
+    }
+
+    private IEnumerator CreateAnswer(Question question, float delay = .5f)
+    {
+        yield return new WaitForSeconds(0.16f);
         for (int i = 0; i < (question.answers.Length); i++)
         {
             GameObject newAnswerOption = Instantiate(answerOption, new Vector3(), Quaternion.identity) as GameObject;
             activeOptions.Add(newAnswerOption);
             newAnswerOption.transform.SetParent(answerPanel.transform.Find("PanelInterim").transform, false);
             newAnswerOption.GetComponent<AnswerScores>().scores = question.answers[i].scores;
-            // Set text 
-            newAnswerOption.transform.Find("Text").GetComponent<TMP_Text>().text = MapLetter(i) + ") " + question.answers[i].answer;
 
-            // Force refresh
         }
+        for (int i = 0; i < (question.answers.Length); i++)
+        {
+            activeOptions[i].transform.Find("Text").GetComponent<TMP_Text>().text = MapLetter(i) + ") " + question.answers[i].answer;
+            yield return new WaitForSeconds(delay);
+        }
+        
     }
 
-    public void AnswerChosen(int[] scores)
+    public void AnswerChosen(int[] scores, GameObject chosenAnswer)
     {
+        // Remove the other options from view
+        ClearQuestionsExcept(chosenAnswer);
+
         int[] oldBarValues = {0,0,0};
         oldBarValues[0] = gameBars[0];
         oldBarValues[1] = gameBars[1];
@@ -396,7 +404,21 @@ public class GameController : Singleton<GameController>
         scoreTexts[0].GetComponent<TMP_Text>().text = gameBars[0].ToString();
         scoreTexts[1].GetComponent<TMP_Text>().text = gameBars[1].ToString();
         scoreTexts[2].GetComponent<TMP_Text>().text = gameBars[2].ToString();
-        NextQuestion(activePhase, questionsAsked);
+
+
+        StartCoroutine(TransitionToNextQuestions());  // NextQuestion(activePhase, questionsAsked);
+    }
+
+    private IEnumerator TransitionToNextQuestions()
+    {
+        gameState = GameStates.transitioning;
+        yield return new WaitForSeconds(1.6f);
+        Question question = NextQuestion(activePhase, questionsAsked);
+        // Display question text
+        questionText.GetComponent<TMP_Text>().text = question.title;
+        ClearQuestion();
+
+        StartCoroutine(CreateAnswer(question, .16f));
     }
 
     string MapLetter(int l)
@@ -423,15 +445,40 @@ public class GameController : Singleton<GameController>
         }
     }
 
+    void ClearQuestionsExcept(GameObject g)
+    {
+        List<GameObject> toRemove = new List<GameObject>();
+        // Any existing question text and options need to be cleared out 
+        for (int i = 0; i< activeOptions.Count; i++)
+        {
+            GameObject a = activeOptions[i];
+            if(a != g){
+                a.transform.Find("Text").GetComponent<TMP_Text>().text = "";
+                Destroy(a, 0.01f);
+                toRemove.Add(a);
+            }
+        }
+        foreach(GameObject a in toRemove)
+        {
+            activeOptions.Remove(a);
+        }
+
+        Debug.Log("Active options: " + activeOptions.Count);
+        
+    }
+
     void ClearQuestion()
     {
         // Any existing question text and options need to be cleared out 
         foreach (GameObject a in activeOptions)
         {
+            Debug.Log("Clearing " + a.transform.Find("Text").GetComponent<TMP_Text>().text);
+            a.transform.Find("Text").GetComponent<TMP_Text>().text = "";
             Destroy(a, 0.01f);
         }
         activeOptions.Clear();
     }
+
 
     void WinGame()
     {
@@ -445,7 +492,7 @@ public class GameController : Singleton<GameController>
         int threshold = 2; // How much leeway does the player have to get a good ending
 
         // Ending if the scores are a bit too close 
-        string end = "Congrats! Your parenting style is above average (at least in this game). But you do have some minor problems in regulating ";
+        string end = "Congrats! Your parenting style is above average (at least in this game). But you do have some minor problems in regulating";
         string check = end;
         
         int extras = 0;
@@ -497,8 +544,6 @@ public class GameController : Singleton<GameController>
         // Hide GUI
         StartCoroutine("HideCanvas", 3.0f);
         StartCoroutine("MoveToEnd", 4.2f);
-        
-
         
     }
 
