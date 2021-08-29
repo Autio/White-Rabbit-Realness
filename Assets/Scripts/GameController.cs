@@ -48,7 +48,7 @@ public class GameController : Singleton<GameController>
     public GameObject barGUI;
 
     public GameObject endText;
-    float startTimer = 80;
+    float startTimer = 92;
 
     public Color chosenAnswerColor;
     public Color chosenTextColor;
@@ -231,6 +231,7 @@ public class GameController : Singleton<GameController>
     {
         yield return new WaitForSeconds(delay);
         playCanvas.SetActive(false);
+        yield return new WaitForSeconds(.3f);
         barGUI.SetActive(false);
 
     }
@@ -345,15 +346,26 @@ public class GameController : Singleton<GameController>
         // Make the chosen answer pop out
         chosenAnswer.GetComponent<Image>().color = chosenAnswerColor;
         chosenAnswer.transform.Find("Text").GetComponent<TMP_Text>().color = chosenTextColor;
-
+        
         // Create reaction texts
         if(scores[0] != 0)
         {
             Debug.Log("Creatin'!");
-       
+
+            GameObject newTextGO = Instantiate(reactionTextPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            newTextGO.transform.SetParent(playCanvas.transform);
+            newTextGO.GetComponent<RectTransform>().localPosition = new Vector3(0, -270, 0);
+            newTextGO.transform.Find("Text").GetComponent<Text>().text = "Ta-dah!"; // Dynamic text based on the bar
+
+            // Make up to three texts, space them accordingly
+
+            // Set their targets to the right bars
+
+            // have the texts move
+
             // Should be UI object
-       //     GameObject rt = Instantiate(reactionTextPrefab, GameObject.Find("Reaction").transform.position, Quaternion.identity);
-            //Destroy(rt, 2f);
+            // GameObject rt = Instantiate(reactionTextPrefab, GameObject.Find("Reaction").transform.position, Quaternion.identity);
+            // Destroy(rt, 2f);
         }
 
         int[] oldBarValues = {0,0,0};
