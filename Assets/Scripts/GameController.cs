@@ -55,6 +55,8 @@ public class GameController : Singleton<GameController>
 
     public GameObject reactionTextPrefab;
 
+    private int gongCounter = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -126,6 +128,12 @@ public class GameController : Singleton<GameController>
     {
         if(gameState != GameStates.playing)
         {
+            // Plop birth sound
+            int[] birthSoundRange = {0, 3};
+            BaseSoundManager.Instance.PlaySoundByIndex(Random.Range(birthSoundRange[0], birthSoundRange[1]), Vector3.zero);
+            BaseSoundManager.Instance.PlaySoundByIndex(4, Vector3.zero);
+            
+
             CameraController.Instance.MoveToNextAnchor(cameraAnchors[1]);
             gameState = GameStates.playing;
 
@@ -147,6 +155,8 @@ public class GameController : Singleton<GameController>
     // Cycle to the next available character or loop around
     public void NextCharacter()
     {
+        BaseSoundManager.Instance.PlaySoundByIndex(7, Vector3.zero);
+
         Debug.Log("Picking next character");
         float transitionDuration = .39f;
         Transform characterTransform = characterOptions[selectedCharacter].transform;
@@ -182,6 +192,8 @@ public class GameController : Singleton<GameController>
 
     public void PreviousCharacter()
     {
+        BaseSoundManager.Instance.PlaySoundByIndex(8, Vector3.zero);
+
         Debug.Log("Picking previous character");
         float transitionDuration = .6f;
         Transform characterTransform = characterOptions[selectedCharacter].transform;
@@ -347,6 +359,16 @@ public class GameController : Singleton<GameController>
         chosenAnswer.GetComponent<Image>().color = chosenAnswerColor;
         chosenAnswer.transform.Find("Text").GetComponent<TMP_Text>().color = chosenTextColor;
         
+        // Play sound, make sure it's not the same as before
+        BaseSoundManager.Instance.PlaySoundByIndex(5 + gongCounter, Vector3.zero);
+        if(gongCounter == 0)
+        {
+            gongCounter = 1;
+        } else 
+        {
+            gongCounter = 0;
+        }
+
         // Create reaction texts
         if(scores[0] != 0)
         {
