@@ -109,7 +109,7 @@ public class GameController : Singleton<GameController>
                 TitleTexts[1].GetComponent<Shot>().Go();
                 titleTextTriggers = 2;
             }
-            if(Time.time > 1.2f && titleTextTriggers == 2)
+            if(Time.time > 1.4f && titleTextTriggers == 2)
             {
                 TitleTexts[2].GetComponent<Shot>().Go();
                 titleTextTriggers = 3;
@@ -122,6 +122,9 @@ public class GameController : Singleton<GameController>
         // Skip the start
         gameState = GameStates.birthing;
         CameraController.Instance.MoveToNextAnchor(cameraAnchors[0]);
+
+        // Movement sound
+        BaseSoundManager.Instance.PlaySoundByIndex(15, Vector3.zero);
     }
 
     public void StartGame()
@@ -132,7 +135,9 @@ public class GameController : Singleton<GameController>
             int[] birthSoundRange = {0, 3};
             BaseSoundManager.Instance.PlaySoundByIndex(Random.Range(birthSoundRange[0], birthSoundRange[1]), Vector3.zero);
             BaseSoundManager.Instance.PlaySoundByIndex(4, Vector3.zero);
-            
+
+            // Change music
+            BaseSoundManager.Instance.PlayMusic(1);   
 
             CameraController.Instance.MoveToNextAnchor(cameraAnchors[1]);
             gameState = GameStates.playing;

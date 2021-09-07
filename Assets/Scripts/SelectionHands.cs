@@ -33,6 +33,8 @@ public class SelectionHands : MonoBehaviour
           GameController.Instance.StartGame();
           character.transform.DOScale(character.transform.localScale * .8f,.2f);
           
+     } else {
+          BaseSoundManager.Instance.PlaySoundByIndex(16,Vector3.zero);
      }
      
      counter++;

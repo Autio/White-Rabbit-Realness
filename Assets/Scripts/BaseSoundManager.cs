@@ -32,10 +32,12 @@ public class BaseSoundManager : MonoBehaviour {
     public static BaseSoundManager Instance;
     
     public AudioClip[] GameSounds;
-    
+    public AudioClip[] GameMusic;
+
     private int totalSounds;
     private ArrayList soundObjectList;
     private SoundObject tempSoundObj;
+
     
     public float volume = 1;
     public string gamePrefsName = "DefaultGame"; // DO NOT FORGET TO SET THIS IN THE EDITOR!!
@@ -73,4 +75,9 @@ public class BaseSoundManager : MonoBehaviour {
         tempSoundObj.PlaySound(aPosition);    
     }
 
+    public void PlayMusic(int index)
+    {
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().clip = GameMusic[index];
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
+    }
 }

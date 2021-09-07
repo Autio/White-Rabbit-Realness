@@ -6,9 +6,12 @@ public class Shot : MonoBehaviour
 {
     // WHITE RABBIT REALNESS
     public Transform target;
+    public int shotSoundIndex = 0;
+    public int hitSoundIndex = 0;
     public float force = 10;
     public void Go() {
         GetComponent<Rigidbody>().AddForce((target.transform.position - transform.position) * force);
+       // BaseSoundManager.Instance.PlaySoundByIndex(shotSoundIndex, Vector3.zero);
     }
     private void Update() {
         if(Input.GetKey(KeyCode.G))
@@ -35,6 +38,7 @@ public class Shot : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if(other.transform.tag == "Background")
         {
+            BaseSoundManager.Instance.PlaySoundByIndex(hitSoundIndex, Vector3.zero);
             StartCoroutine("AddGravity");
             StartCoroutine("Shrink");
         }    
